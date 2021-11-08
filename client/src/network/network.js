@@ -1,4 +1,4 @@
-const SERVER_URL = 'http://localhost:3001';
+const SERVER_URL = 'https://hidden-beach-46824.herokuapp.com';
 
 export async function getPhonebook() {
 	try {
