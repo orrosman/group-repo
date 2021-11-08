@@ -4,10 +4,15 @@ const phonelistDiv = document.querySelector('#phones-list');
 const personDiv = document.querySelector('#person-section');
 const addContactButton = document.querySelector('#add-contact');
 const phoneList = document.createElement('ul');
+phoneList.setAttribute('class', 'list-group');
 
 const phonebookData = await network.getPhonebook();
 for (const person of phonebookData) {
 	const nameElement = document.createElement('li');
+	nameElement.setAttribute(
+		'class',
+		'list-group-item d-flex justify-content-between align-items-center'
+	);
 	nameElement.innerText = person.name;
 	nameElement.addEventListener('click', async () => {
 		event.preventDefault();
@@ -16,6 +21,7 @@ for (const person of phonebookData) {
 	});
 
 	const removedButton = document.createElement('span');
+	removedButton.setAttribute('class', 'badge');
 	removedButton.innerText = '❌';
 	removedButton.addEventListener('click', () => {
 		event.preventDefault();
