@@ -14,22 +14,25 @@
 	</head>
 	<body>
 		<h1 class="d-flex justify-content-center">Phone Book</h1>
-		<div class="container">
-			<div id="person-section"></div>
-		</div>
 		<br />
-		<div class="container">
-			<div id="phones-list"></div>
-		</div>
-		<div class="container">
-			<input id="name-input" type="text" placeholder="Enter a name:" />
-			<input
-				id="number-input"
-				type="tel"
-				placeholder="Enter a number:"
-				pattern="[0-9]{2}-[0-9]{2}-[0-9]{7}"
-			/>
-			<button id="add-contact" type="button">Add contact</button>
+		<div class="row">
+			<div class="container col">
+				<div id="phones-list"></div>
+				<div class="container">
+					<div id="person-section"></div>
+				</div>
+			</div>
+
+			<div class="container col">
+				<input id="name-input" type="text" placeholder="Enter a name:" />
+				<input
+					id="number-input"
+					type="tel"
+					placeholder="Enter a number:"
+					pattern="[0-9]{2}-[0-9]{2}-[0-9]{7}"
+				/>
+				<button id="add-contact" type="button">Add contact</button>
+			</div>
 		</div>
 	</body>
 </html>

@@ -12,7 +12,6 @@ for (const person of phonebookData) {
 	nameElement.addEventListener('click', async () => {
 		event.preventDefault();
 		const personObj = await getPerson(person.id);
-		console.log(personObj);
 		addPersonToPage(personObj);
 	});
 
@@ -20,7 +19,6 @@ for (const person of phonebookData) {
 	removedButton.innerText = '❌';
 	removedButton.addEventListener('click', () => {
 		event.preventDefault();
-		console.log(event.target);
 		network.removePerson(person.id);
 	});
 	nameElement.appendChild(removedButton);
