@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { nextTick } = require('process');
 const uuid = require('uuid');
 
 function getPhonebook() {
@@ -31,10 +30,12 @@ function deletePerson(id) {
 	let index = 0;
 	for (const person of phonebook.data) {
 		if (person.id == id) {
+			console.log(phonebook.data[index]);
 			phonebook.data.splice(index, 1);
 			fs.writeFileSync('./data/phonebook.json', JSON.stringify(phonebook));
 			return `The person with ID ${id} was removed from phonebook`;
 		}
+		index++;
 	}
 	return false;
 }

@@ -9,12 +9,21 @@ const phonebookData = await network.getPhonebook();
 for (const person of phonebookData) {
 	const nameElement = document.createElement('li');
 	nameElement.innerText = person.name;
-	// nameElement.setAttribute('id') = person.id;
 	nameElement.addEventListener('click', async () => {
+		event.preventDefault();
 		const personObj = await getPerson(person.id);
 		console.log(personObj);
 		addPersonToPage(personObj);
 	});
+
+	const removedButton = document.createElement('span');
+	removedButton.innerText = '❌';
+	removedButton.addEventListener('click', () => {
+		event.preventDefault();
+		console.log(event.target);
+		network.removePerson(person.id);
+	});
+	nameElement.appendChild(removedButton);
 
 	phoneList.appendChild(nameElement);
 }

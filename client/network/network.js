@@ -19,13 +19,20 @@ export async function getPerson(id) {
 }
 
 export async function addPerson(name, number) {
-	// const properties = JSON.stringify({ name: name, number: number });
-
 	try {
 		const response = await axios.post(`${SERVER_URL}/api/persons`, {
 			name: name,
 			number: number,
 		});
+		return response.data;
+	} catch (e) {
+		console.log(e);
+	}
+}
+
+export async function removePerson(id) {
+	try {
+		const response = await axios.delete(`${SERVER_URL}/api/persons/${id}`);
 		return response.data;
 	} catch (e) {
 		console.log(e);
