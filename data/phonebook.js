@@ -1,4 +1,5 @@
 const fs = require('fs');
+const uuid = require('uuid');
 
 function getPhonebook() {
 	const data = fs.readFileSync('./data/phonebook.json');
@@ -37,4 +38,25 @@ function deletePerson(id) {
 	return false;
 }
 
-module.exports = { getPhonebook, getPhonebookLength, getPerson, deletePerson };
+function addPerson(name, number) {
+	const data = fs.readFileSync('./data/phonebook.json');
+	const phonebook = JSON.parse(data);
+	let id = uuid.v4();
+
+	const person = {
+		id: id,
+		name: name,
+		number: number,
+	};
+	phonebook.data.push(person);
+	fs.writeFileSync('./data/phonebook.json', JSON.stringify(phonebook));
+	return `The person with ID ${id} was added to phonebook`;
+}
+
+module.exports = {
+	getPhonebook,
+	getPhonebookLength,
+	getPerson,
+	deletePerson,
+	addPerson,
+};

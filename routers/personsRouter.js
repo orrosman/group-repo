@@ -22,4 +22,13 @@ router.get('/', (req, res) => {
 	res.send(phonebook.data);
 });
 
+router.post('/', (req, res) => {
+	console.log(req.body);
+	const { name, number } = req.body;
+	console.log(name, number);
+	const phonebook = Phonebook.addPerson(name, number);
+
+	res.send(phonebook.data);
+});
+
 module.exports = router;
