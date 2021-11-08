@@ -9,6 +9,12 @@ router.get('/:id', (req, res) => {
 
 	res.send(person);
 });
+router.delete('/:id', (req, res) => {
+	const id = req.params.id;
+	const person = Phonebook.deletePerson(id);
+
+	res.send(person);
+});
 
 router.get('/', (req, res) => {
 	const phonebook = Phonebook.getPhonebook();

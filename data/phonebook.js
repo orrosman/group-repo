@@ -22,4 +22,19 @@ function getPerson(id) {
 	return false;
 }
 
-module.exports = { getPhonebook, getPhonebookLength, getPerson };
+function deletePerson(id) {
+	const data = fs.readFileSync('./data/phonebook.json');
+	const phonebook = JSON.parse(data);
+
+	let index = 0;
+	for (const person of phonebook.data) {
+		if (person.id == id) {
+			phonebook.data.splice(index, 1);
+			fs.writeFileSync('./data/phonebook.json', JSON.stringify(phonebook));
+			return `The person with ID ${id} was removed from phonebook`;
+		}
+	}
+	return false;
+}
+
+module.exports = { getPhonebook, getPhonebookLength, getPerson, deletePerson };
