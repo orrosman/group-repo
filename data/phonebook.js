@@ -60,7 +60,6 @@ function isNameExist(name) {
 
 	for (const person of phonebook.data) {
 		if (person.name == name) {
-			console.log('true');
 			return true;
 		}
 	}
