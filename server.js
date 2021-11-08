@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 const personsRouter = require('./routers/personsRouter');
 const Phonebook = require('./data/phonebook');
 const errorHandler = require('./middleware/errorHandler');
@@ -25,10 +25,10 @@ app.use('/info', async (req, res) => {
 	res.send(`Phonebook has info for ${length} people ${new Date(Date.now())}`);
 });
 
-app.use('/', express.static(path.resolve('./client'))); // serve main path as static dir
+app.use('/', express.static(path.resolve('./dist'))); // serve main path as static dir
 app.get('/', function (req, res) {
 	// serve main path as static file
-	res.sendFile(path.resolve('./client/index.html'));
+	res.sendFile(path.resolve('./dist/index.html'));
 });
 
 app.use(errorHandler);
