@@ -8,3 +8,12 @@ export async function getPhonebook() {
 		console.log(e);
 	}
 }
+
+export async function getPerson(id) {
+	try {
+		const response = await axios.get(`${SERVER_URL}/api/persons/${id}`);
+		return response.data;
+	} catch (e) {
+		console.log(e);
+	}
+}
