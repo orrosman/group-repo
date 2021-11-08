@@ -2,6 +2,7 @@ import * as network from './network/network.js';
 
 const phonelistDiv = document.querySelector('#phones-list');
 const personDiv = document.querySelector('#person-section');
+const addContactButton = document.querySelector('#add-contact');
 const phoneList = document.createElement('ul');
 
 const phonebookData = await network.getPhonebook();
@@ -36,3 +37,12 @@ function addPersonToPage(person) {
 		personDiv.appendChild(propertyElement);
 	}
 }
+
+addContactButton.addEventListener('click', async () => {
+	event.preventDefault();
+	const nameInput = document.querySelector('#name-input').value;
+	const numberInput = document.querySelector('#number-input').value;
+
+	const response = await network.addPerson(nameInput, numberInput);
+	console.log(response);
+});
