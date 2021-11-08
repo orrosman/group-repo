@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3001;
 const personsRouter = require('./routers/personsRouter');
 const Phonebook = require('./data/phonebook');
+const errorHandler = require('./middleware/errorHandler');
 
 app.use(cors());
 app.use(express.json());
@@ -13,7 +14,7 @@ app.use('/info', async (req, res) => {
 
 	res.send(`Phonebook has info for ${length} people ${new Date(Date.now())}`);
 });
-
+app.use(errorHandler);
 app.listen(PORT, () => {
 	console.log('server running💨');
 });

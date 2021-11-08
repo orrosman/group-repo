@@ -22,10 +22,15 @@ router.get('/', (req, res) => {
 	res.send(phonebook.data);
 });
 
-router.post('/', (req, res) => {
-	console.log(req.body);
+router.post('/', (req, res, next) => {
 	const { name, number } = req.body;
-	console.log(name, number);
+	if (!name || !number) {
+		return next(400);
+	}
+	if (Phonebook.isNameExist(name)) {
+		return next(406);
+	}
+
 	const phonebook = Phonebook.addPerson(name, number);
 
 	res.send(phonebook.data);

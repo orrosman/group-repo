@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { nextTick } = require('process');
 const uuid = require('uuid');
 
 function getPhonebook() {
@@ -53,10 +54,24 @@ function addPerson(name, number) {
 	return `The person with ID ${id} was added to phonebook`;
 }
 
+function isNameExist(name) {
+	const data = fs.readFileSync('./data/phonebook.json');
+	const phonebook = JSON.parse(data);
+
+	for (const person of phonebook.data) {
+		if (person.name == name) {
+			console.log('true');
+			return true;
+		}
+	}
+	return false;
+}
+
 module.exports = {
 	getPhonebook,
 	getPhonebookLength,
 	getPerson,
 	deletePerson,
 	addPerson,
+	isNameExist,
 };
